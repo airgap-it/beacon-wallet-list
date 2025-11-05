@@ -77,6 +77,10 @@ const build = async () => {
   try {
     await mkdir(DIST_DIR, { recursive: true })
 
+    // Read version from package.json
+    const packageJson = JSON.parse((await readFile(path.join(ROOT_DIR, 'package.json'))).toString())
+    const packageVersion = packageJson.version
+
     // Read source JSON files
     const tezos = JSON.parse((await readFile(path.join(SRC_DIR, 'tezos.json'))).toString())
     const substrate = JSON.parse((await readFile(path.join(SRC_DIR, 'substrate.json'))).toString())
@@ -84,16 +88,19 @@ const build = async () => {
       (await readFile(path.join(SRC_DIR, 'tezos-sapling.json'))).toString()
     )
 
-    // Convert logos to base64 and set current timestamp
+    // Convert logos to base64 and set current timestamp and version
     const buildTimestamp = new Date().toISOString()
 
     const tezosWithBase64 = await convertLogosToBase64(tezos)
+    tezosWithBase64.version = packageVersion
     tezosWithBase64.updated = buildTimestamp
 
     const substrateWithBase64 = await convertLogosToBase64(substrate)
+    substrateWithBase64.version = packageVersion
     substrateWithBase64.updated = buildTimestamp
 
     const tezosSaplingWithBase64 = await convertLogosToBase64(tezosSapling)
+    tezosSaplingWithBase64.version = packageVersion
     tezosSaplingWithBase64.updated = buildTimestamp
 
     // Write to dist/
