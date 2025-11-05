@@ -82,10 +82,17 @@ const build = async () => {
       (await readFile(path.join(SRC_DIR, 'tezos-sapling.json'))).toString()
     )
 
-    // Convert logos to base64
+    // Convert logos to base64 and set current timestamp
+    const buildTimestamp = new Date().toISOString()
+
     const tezosWithBase64 = await convertLogosToBase64(tezos)
+    tezosWithBase64.updated = buildTimestamp
+
     const substrateWithBase64 = await convertLogosToBase64(substrate)
+    substrateWithBase64.updated = buildTimestamp
+
     const tezosSaplingWithBase64 = await convertLogosToBase64(tezosSapling)
+    tezosSaplingWithBase64.updated = buildTimestamp
 
     // Write to dist/
     await writeFile(path.join(DIST_DIR, 'tezos.json'), JSON.stringify(tezosWithBase64, null, 2))
