@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-11-04T17:36:36.146Z",
+  "extensionList": [],
+  "desktopList": [],
+  "webList": [],
+  "iOSList": [
+    {
+      "key": "airgap_ios",
+      "name": "AirGap Wallet",
+      "shortName": "AirGap",
+      "color": "rgb(4, 235, 204)",
+      "logo": "substrate_ios-airgap.png",
+      "universalLink": "https://wallet.airgap.it",
+      "deepLink": "airgap-wallet://"
+    },
+    {
+      "key": "nova_ios",
+      "name": "Nova Wallet",
+      "shortName": "Nova",
+      "color": "",
+      "logo": "substrate_ios-nova.png",
+      "universalLink": "https://novawallet.io",
+      "deepLink": "nova://"
+    },
+    {
+      "key": "fearless_ios",
+      "name": "Fearless Wallet",
+      "shortName": "fearless",
+      "color": "",
+      "logo": "substrate_ios-fearless.png",
+      "universalLink": "https://fearlesswallet.io",
+      "deepLink": "fearless://"
+    },
+    {
+      "key": "acurast-lite",
+      "name": "Acurast Lite",
+      "shortName": "Acurast",
+      "color": "",
+      "universalLink": "https://hub.acurast.com/",
+      "logo": "substrate_ios-acurast-lite.png",
+      "deepLink": "acurast://"
+    }
+  ]
+}

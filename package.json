@@ -1,0 +1,21 @@
+{
+  "name": "@airgap/beacon-wallet-list",
+  "version": "1.0.0",
+  "description": "Centralized wallet registry for Beacon SDK",
+  "type": "module",
+  "scripts": {
+    "build": "node --loader ts-node/esm scripts/build.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgap-it/beacon-wallet-list.git"
+  },
+  "author": "AirGap",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "resize-img": "^2.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
+  }
+}

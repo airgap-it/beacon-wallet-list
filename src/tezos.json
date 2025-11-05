@@ -1,0 +1,271 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-11-04T17:36:35.701Z",
+  "extensionList": [
+    {
+      "key": "spire_chrome",
+      "id": "gpfndedineagiepkpinficbcbbgjoenn",
+      "name": "Spire",
+      "shortName": "Spire",
+      "color": "",
+      "logo": "tezos_extension-spire.png",
+      "link": "https://spirewallet.com/",
+      "deprecated": true
+    },
+    {
+      "key": "temple_chrome",
+      "id": "ookjlbkiijinhpmnjffcofjonbfbgaoc",
+      "name": "Temple Wallet Chrome",
+      "shortName": "Temple",
+      "color": "",
+      "logo": "tezos_extension-temple.png",
+      "link": "https://templewallet.com/"
+    },
+    {
+      "key": "temple_firefox",
+      "id": "{34ac229e-1cf5-4e4c-8a77-988155c4360f}",
+      "name": "Temple Wallet Firefox",
+      "shortName": "Temple",
+      "color": "",
+      "logo": "tezos_extension-temple.png",
+      "link": "https://templewallet.com/"
+    }
+  ],
+  "desktopList": [
+    {
+      "key": "infinity_wallet",
+      "name": "Infinity Wallet",
+      "shortName": "Infinity Wallet",
+      "color": "rgb(52, 147, 218)",
+      "logo": "tezos_infinity-wallet.png",
+      "deepLink": "infinity://",
+      "downloadLink": "https://infinitywallet.io/download"
+    },
+    {
+      "key": "galleon_desktop",
+      "name": "Galleon",
+      "shortName": "Galleon",
+      "color": "",
+      "logo": "tezos_desktop-galleon.png",
+      "deepLink": "galleon://",
+      "downloadLink": "https://cryptonomic.tech/galleon.html",
+      "deprecated": true
+    },
+    {
+      "key": "umami_desktop",
+      "name": "Umami",
+      "shortName": "Umami",
+      "color": "",
+      "logo": "tezos_desktop-umami.png",
+      "deepLink": "umami://",
+      "downloadLink": "https://umamiwallet.com/#download"
+    },
+    {
+      "key": "atomex_desktop",
+      "name": "Atomex Wallet",
+      "shortName": "Atomex",
+      "color": "",
+      "logo": "tezos_desktop-atomex.png",
+      "deepLink": "atomex://",
+      "downloadLink": "https://atomex.me/"
+    }
+  ],
+  "webList": [
+    {
+      "key": "metamask_tezos_web",
+      "name": "MetaMask",
+      "shortName": "MetaMask",
+      "color": "",
+      "logo": "tezos_web-metamask.png",
+      "links": {
+        "mainnet": "https://metamask.tezos.com/",
+        "ghostnet": "https://metamask.tezos.com/",
+        "weeklynet": "https://metamask.tezos.com/",
+        "dailynet": "https://metamask.tezos.com/",
+        "delphinet": "https://metamask.tezos.com/",
+        "edonet": "https://metamask.tezos.com/",
+        "florencenet": "https://metamask.tezos.com/",
+        "granadanet": "https://metamask.tezos.com/",
+        "hangzhounet": "https://metamask.tezos.com/",
+        "ithacanet": "https://metamask.tezos.com/",
+        "jakartanet": "https://metamask.tezos.com/",
+        "kathmandunet": "https://metamask.tezos.com/",
+        "limanet": "https://metamask.tezos.com/",
+        "mumbainet": "https://metamask.tezos.com/",
+        "nairobinet": "https://metamask.tezos.com/",
+        "oxfordnet": "https://metamask.tezos.com/",
+        "parisnet": "https://metamask.tezos.com/",
+        "quebecnet": "https://metamask.tezos.com/",
+        "rionet": "https://metamask.tezos.com/",
+        "seoulnet": "https://metamask.tezos.com/",
+        "shadownet": "https://metamask.tezos.com/"
+      }
+    },
+    {
+      "key": "kukai_web",
+      "name": "Kukai Wallet",
+      "shortName": "Kukai",
+      "color": "",
+      "logo": "tezos_web-kukai.png",
+      "supportedInteractionStandards": [
+        "wallet_connect"
+      ],
+      "links": {
+        "mainnet": "https://wallet.kukai.app",
+        "ghostnet": "https://ghostnet.kukai.app",
+        "weeklynet": "https://weeklynet.kukai.app",
+        "dailynet": "https://dailynet.kukai.app",
+        "delphinet": "https://testnet.kukai.app",
+        "edonet": "https://edonet.kukai.app",
+        "florencenet": "https://florencenet.kukai.app",
+        "granadanet": "https://granadanet.kukai.app",
+        "hangzhounet": "https://hangzhounet.kukai.app",
+        "ithacanet": "https://ithacanet.kukai.app",
+        "jakartanet": "https://jakartanet.kukai.app",
+        "kathmandunet": "https://kathmandunet.kukai.app",
+        "limanet": "https://limanet.kukai.app",
+        "mumbainet": "https://mumbainet.kukai.app",
+        "nairobinet": "https://nairobinet.kukai.app",
+        "oxfordnet": "https://oxfordnet.kukai.app",
+        "parisnet": "https://parisnet.kukai.app",
+        "quebecnet": "https://quebecnet.kukai.app",
+        "rionet": "https://rionet.kukai.app",
+        "seoulnet": "https://seoulnet.kukai.app",
+        "shadownet": "https://shadownet.kukai.app"
+      }
+    },
+    {
+      "key": "tzsafe",
+      "name": "TzSafe",
+      "shortName": "TzSafe",
+      "color": "rgb(235, 52, 72)",
+      "logo": "tezos_tzsafe.svg",
+      "links": {
+        "mainnet": "https://tzsafe.marigold.dev",
+        "ghostnet": "https://ghostnet.tzsafe.marigold.dev",
+        "weeklynet": "https://ghostnet.tzsafe.marigold.dev",
+        "dailynet": "https://ghostnet.tzsafe.marigold.dev",
+        "delphinet": "https://ghostnet.tzsafe.marigold.dev",
+        "edonet": "https://ghostnet.tzsafe.marigold.dev",
+        "florencenet": "https://ghostnet.tzsafe.marigold.dev",
+        "granadanet": "https://ghostnet.tzsafe.marigold.dev",
+        "hangzhounet": "https://ghostnet.tzsafe.marigold.dev",
+        "ithacanet": "https://ghostnet.tzsafe.marigold.dev",
+        "jakartanet": "https://ghostnet.tzsafe.marigold.dev",
+        "kathmandunet": "https://ghostnet.tzsafe.marigold.dev",
+        "limanet": "https://ghostnet.tzsafe.marigold.dev",
+        "mumbainet": "https://ghostnet.tzsafe.marigold.dev",
+        "nairobinet": "https://ghostnet.tzsafe.marigold.dev",
+        "oxfordnet": "https://ghostnet.tzsafe.marigold.dev",
+        "parisnet": "https://ghostnet.tzsafe.marigold.dev",
+        "quebecnet": "https://ghostnet.tzsafe.marigold.dev",
+        "rionet": "https://ghostnet.tzsafe.marigold.dev",
+        "seoulnet": "https://ghostnet.tzsafe.marigold.dev",
+        "shadownet": "https://ghostnet.tzsafe.marigold.dev"
+      }
+    }
+  ],
+  "iOSList": [
+    {
+      "key": "airgap_ios",
+      "name": "AirGap Wallet",
+      "shortName": "AirGap",
+      "color": "rgb(4, 235, 204)",
+      "logo": "tezos_ios-airgap.png",
+      "universalLink": "https://wallet.airgap.it",
+      "deepLink": "airgap-wallet://"
+    },
+    {
+      "key": "plenty_wallet_ios",
+      "name": "Plenty Wallet - your portal to web3 ",
+      "shortName": "Plenty Wallet",
+      "color": "",
+      "logo": "tezos_ios-plenty-wallet.png",
+      "universalLink": "https://www.naan.app/",
+      "deepLink": "naan://",
+      "deprecated": true
+    },
+    {
+      "key": "altme_wallet",
+      "name": "Altme Wallet",
+      "shortName": "Altme",
+      "color": "",
+      "logo": "tezos_altme.png",
+      "universalLink": "https://app.altme.io/app/download"
+    },
+    {
+      "key": "temple_ios",
+      "name": "Temple Wallet",
+      "shortName": "Temple",
+      "color": "",
+      "logo": "tezos_ios-temple.png",
+      "universalLink": "https://templewallet.com",
+      "deepLink": "temple://"
+    },
+    {
+      "key": "atomex_ios",
+      "name": "Atomex Wallet",
+      "shortName": "Atomex",
+      "color": "",
+      "logo": "tezos_ios-atomex.png",
+      "universalLink": "https://atomex.me",
+      "deepLink": "atomex://"
+    },
+    {
+      "key": "umami_ios",
+      "name": "Umami Mobile",
+      "shortName": "Umami Mobile",
+      "color": "",
+      "logo": "tezos_desktop-umami.png",
+      "deepLink": "umami://",
+      "universalLink": "https://umamiwallet.com/"
+    },
+    {
+      "key": "trust_ios",
+      "name": "Trust Wallet",
+      "shortName": "Trust Wallet",
+      "color": "",
+      "supportedInteractionStandards": [
+        "wallet_connect"
+      ],
+      "logo": "tezos_ios-trust.png",
+      "universalLink": "https://link.trustwallet.com",
+      "deepLink": "trust://"
+    },
+    {
+      "key": "exodus_mobile",
+      "name": "Exodus Mobile",
+      "shortName": "Exodus",
+      "color": "",
+      "logo": "tezos_exodus.svg",
+      "supportedInteractionStandards": [
+        "beacon"
+      ],
+      "deepLink": "exodus://wc",
+      "universalLink": "https://www.exodus.com/"
+    },
+    {
+      "key": "kukai_ios",
+      "name": "Kukai Wallet",
+      "shortName": "Kukai",
+      "color": "",
+      "logo": "tezos_web-kukai.png",
+      "supportedInteractionStandards": [
+        "wallet_connect"
+      ],
+      "universalLink": "https://wallet.kukai.app",
+      "deepLink": "kukai://"
+    },
+    {
+      "key": "fireblocks_ios",
+      "name": "Fireblocks Wallet",
+      "shortName": "Fireblocks",
+      "color": "",
+      "logo": "tezos_ios-fireblocks.svg",
+      "supportedInteractionStandards": [
+        "wallet_connect"
+      ],
+      "universalLink": ""
+    }
+  ]
+}

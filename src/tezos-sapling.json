@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-11-04T17:36:36.240Z",
+  "extensionList": [],
+  "desktopList": [],
+  "webList": [],
+  "iOSList": [
+    {
+      "key": "airgap_ios",
+      "name": "AirGap Wallet",
+      "shortName": "AirGap",
+      "color": "rgb(4, 235, 204)",
+      "logo": "tezos-sapling_ios-airgap.png",
+      "universalLink": "https://wallet.airgap.it",
+      "deepLink": "airgap-wallet://"
+    }
+  ]
+}
