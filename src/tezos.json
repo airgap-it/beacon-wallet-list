@@ -59,15 +59,6 @@
       "logo": "tezos_desktop-umami.png",
       "deepLink": "umami://",
       "downloadLink": "https://umamiwallet.com/#download"
-    },
-    {
-      "key": "atomex_desktop",
-      "name": "Atomex Wallet",
-      "shortName": "Atomex",
-      "color": "",
-      "logo": "tezos_desktop-atomex.png",
-      "deepLink": "atomex://",
-      "downloadLink": "https://atomex.me/"
     }
   ],
   "webList": [
