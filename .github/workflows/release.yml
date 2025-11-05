@@ -1,0 +1,71 @@
+name: Create Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build artifacts
+        run: npm run build
+
+      - name: Get version and commit info
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "commit_sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "tag_commit=v$VERSION-$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "tag_latest=v$VERSION-latest" >> $GITHUB_OUTPUT
+
+      - name: Delete existing latest tag
+        continue-on-error: true
+        run: |
+          git push origin :refs/tags/${{ steps.version.outputs.tag_latest }}
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag_commit }}
+          name: Release ${{ steps.version.outputs.tag_commit }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          files: |
+            dist/substrate.json
+            dist/tezos.json
+            dist/tezos-sapling.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Latest Tag Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag_latest }}
+          name: Latest Release
+          draft: false
+          prerelease: false
+          make_latest: false
+          files: |
+            dist/substrate.json
+            dist/tezos.json
+            dist/tezos-sapling.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
