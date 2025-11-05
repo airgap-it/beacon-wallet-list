@@ -26,6 +26,7 @@ jobs:
         run: npm run build
 
       - name: Auto-commit dist files
+        id: auto-commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update dist [skip ci]'
@@ -35,10 +36,15 @@ jobs:
         id: version
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          COMMIT_SHA=$(git rev-parse --short HEAD)
+          # Use the commit SHA from auto-commit action (or current HEAD if no commit was made)
+          COMMIT_SHA=${{ steps.auto-commit.outputs.commit_hash }}
+          if [ -z "$COMMIT_SHA" ]; then
+            COMMIT_SHA=$(git rev-parse HEAD)
+          fi
+          COMMIT_SHA_SHORT=$(echo $COMMIT_SHA | cut -c1-7)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "commit_sha=$COMMIT_SHA" >> $GITHUB_OUTPUT
-          echo "tag_commit=v$VERSION-$COMMIT_SHA" >> $GITHUB_OUTPUT
+          echo "commit_sha=$COMMIT_SHA_SHORT" >> $GITHUB_OUTPUT
+          echo "tag_commit=v$VERSION-$COMMIT_SHA_SHORT" >> $GITHUB_OUTPUT
           echo "tag_latest=v$VERSION-latest" >> $GITHUB_OUTPUT
 
       - name: Delete existing latest tag
