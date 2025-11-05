@@ -4,7 +4,7 @@
   "description": "Centralized wallet registry for Beacon SDK",
   "type": "module",
   "scripts": {
-    "build": "node --loader ts-node/esm scripts/build.ts",
+    "build": "tsx scripts/build.ts",
     "prepare": "husky"
   },
   "repository": {
@@ -16,8 +16,8 @@
   "devDependencies": {
     "@types/node": "^22.0.0",
     "husky": "^9.1.7",
-    "resize-img": "^2.0.0",
-    "ts-node": "^10.9.2",
+    "image-size": "^1.1.1",
+    "tsx": "^4.19.0",
     "typescript": "^5.0.0"
   }
 }

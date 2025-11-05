@@ -1,13 +1,10 @@
 import * as path from 'path'
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import { createRequire } from 'node:module'
+import sizeOf from 'image-size'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const require = createRequire(import.meta.url)
-
-const resizeImg = require('resize-img')
 
 const ROOT_DIR = path.join(__dirname, '../')
 const SRC_DIR = path.join(ROOT_DIR, 'src')
@@ -36,7 +33,8 @@ const convertLogosToBase64 = async (registry: WalletRegistry): Promise<WalletReg
         if (!ext) return entry
 
         try {
-          const imgBuffer = await readFile(path.join(LOGOS_DIR, entry.logo))
+          const imgPath = path.join(LOGOS_DIR, entry.logo)
+          const imgBuffer = await readFile(imgPath)
 
           if (ext === 'svg') {
             return {
@@ -44,19 +42,23 @@ const convertLogosToBase64 = async (registry: WalletRegistry): Promise<WalletReg
               logo: `data:image/svg+xml;base64,${imgBuffer.toString('base64')}`
             }
           } else {
-            // Resize PNG images to 256x256
-            const resizedImage = await resizeImg(imgBuffer, {
-              width: 256,
-              height: 256
-            })
+            // Validate PNG dimensions are 256x256
+            const dimensions = sizeOf(imgBuffer)
+            if (dimensions.width !== 256 || dimensions.height !== 256) {
+              throw new Error(
+                `Logo ${entry.logo} must be 256x256px but is ${dimensions.width}x${dimensions.height}px`
+              )
+            }
+
+            // Use PNG images as-is without resizing
             return {
               ...entry,
-              logo: `data:image/${ext};base64,${resizedImage.toString('base64')}`
+              logo: `data:image/${ext};base64,${imgBuffer.toString('base64')}`
             }
           }
         } catch (error) {
-          console.warn(`Failed to process logo ${entry.logo}:`, error)
-          return entry
+          console.error(`Failed to process logo ${entry.logo}:`, error)
+          throw error
         }
       })
     )
