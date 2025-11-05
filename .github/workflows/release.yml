@@ -13,11 +13,39 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get incremented version
+        id: version
+        run: |
+          # Fetch all tags
+          git fetch --tags
+
+          # Get the latest tag matching v1.0.* pattern
+          LATEST_TAG=$(git tag -l "v1.0.*" | sort -V | tail -n 1)
+
+          if [ -z "$LATEST_TAG" ]; then
+            # No existing tags, start with 1.0.0
+            NEW_VERSION="1.0.0"
+          else
+            # Extract patch number and increment
+            PATCH=$(echo $LATEST_TAG | sed 's/v1\.0\.//')
+            NEXT_PATCH=$((PATCH + 1))
+            NEW_VERSION="1.0.$NEXT_PATCH"
+          fi
+
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Next version: $NEW_VERSION (tag: v$NEW_VERSION)"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Update package.json version
+        run: npm version ${{ steps.version.outputs.version }} --no-git-tag-version
 
       - name: Install dependencies
         run: npm install
@@ -25,37 +53,12 @@ jobs:
       - name: Build artifacts
         run: npm run build
 
-      - name: Auto-commit dist files
+      - name: Auto-commit version and dist files
         id: auto-commit
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'chore: update dist [skip ci]'
-          file_pattern: 'dist/*.json'
-
-      - name: Get incremented version
-        id: version
-        run: |
-          # Get base version from package.json (e.g., 1.0.0)
-          BASE_VERSION=$(node -p "require('./package.json').version")
-
-          # Fetch all tags
-          git fetch --tags
-
-          # Get the latest tag matching v1.0.* pattern
-          LATEST_TAG=$(git tag -l "v${BASE_VERSION%.*}.*" | sort -V | tail -n 1)
-
-          if [ -z "$LATEST_TAG" ]; then
-            # No existing tags, start with base version
-            NEW_TAG="v$BASE_VERSION"
-          else
-            # Extract patch number and increment
-            PATCH=$(echo $LATEST_TAG | sed 's/v[0-9]*\.[0-9]*\.//')
-            NEXT_PATCH=$((PATCH + 1))
-            NEW_TAG="v${BASE_VERSION%.*}.$NEXT_PATCH"
-          fi
-
-          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
-          echo "Next version: $NEW_TAG"
+          commit_message: 'chore: bump version to ${{ steps.version.outputs.version }} and update dist [skip ci]'
+          file_pattern: 'package.json package-lock.json dist/*.json'
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
