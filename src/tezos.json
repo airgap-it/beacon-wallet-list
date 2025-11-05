@@ -3,16 +3,6 @@
   "updated": "2025-11-04T17:36:35.701Z",
   "extensionList": [
     {
-      "key": "test",
-      "id": "test",
-      "name": "Test",
-      "shortName": "Test",
-      "color": "",
-      "logo": "tezos_extension-spire.png",
-      "link": "https://test.com/",
-      "deprecated": false
-    },
-    {
       "key": "spire_chrome",
       "id": "gpfndedineagiepkpinficbcbbgjoenn",
       "name": "Spire",
@@ -20,7 +10,7 @@
       "color": "",
       "logo": "tezos_extension-spire.png",
       "link": "https://spirewallet.com/",
-      "deprecated": false
+      "deprecated": true
     },
     {
       "key": "temple_chrome",
