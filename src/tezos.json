@@ -3,6 +3,16 @@
   "updated": "2025-11-04T17:36:35.701Z",
   "extensionList": [
     {
+      "key": "test",
+      "id": "test",
+      "name": "Test",
+      "shortName": "Test",
+      "color": "",
+      "logo": "tezos_extension-spire.png",
+      "link": "https://test.com/",
+      "deprecated": false
+    },
+    {
       "key": "spire_chrome",
       "id": "gpfndedineagiepkpinficbcbbgjoenn",
       "name": "Spire",
@@ -10,7 +20,7 @@
       "color": "",
       "logo": "tezos_extension-spire.png",
       "link": "https://spirewallet.com/",
-      "deprecated": true
+      "deprecated": false
     },
     {
       "key": "temple_chrome",
@@ -59,6 +69,15 @@
       "logo": "tezos_desktop-umami.png",
       "deepLink": "umami://",
       "downloadLink": "https://umamiwallet.com/#download"
+    },
+    {
+      "key": "atomex_desktop",
+      "name": "Atomex Wallet",
+      "shortName": "Atomex",
+      "color": "",
+      "logo": "tezos_desktop-atomex.png",
+      "deepLink": "atomex://",
+      "downloadLink": "https://atomex.me/"
     }
   ],
   "webList": [
@@ -192,6 +211,15 @@
       "logo": "tezos_ios-temple.png",
       "universalLink": "https://templewallet.com",
       "deepLink": "temple://"
+    },
+    {
+      "key": "atomex_ios",
+      "name": "Atomex Wallet",
+      "shortName": "Atomex",
+      "color": "",
+      "logo": "tezos_ios-atomex.png",
+      "universalLink": "https://atomex.me",
+      "deepLink": "atomex://"
     },
     {
       "key": "umami_ios",
