@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# Allow CI to commit dist/ files (git-auto-commit-action sets GITHUB_ACTIONS=true)
+if [ "$GITHUB_ACTIONS" = "true" ]; then
+  exit 0
+fi
+
 # Check if dist/ files are staged
 if git diff --cached --name-only | grep -q "^dist/"; then
   echo "❌ Error: dist/ files should not be committed manually!"
