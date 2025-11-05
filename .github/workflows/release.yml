@@ -25,6 +25,12 @@ jobs:
       - name: Build artifacts
         run: npm run build
 
+      - name: Auto-commit dist files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: update dist [skip ci]'
+          file_pattern: 'dist/*.json'
+
       - name: Get version and commit info
         id: version
         run: |
@@ -69,3 +75,14 @@ jobs:
             dist/tezos-sapling.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Purge jsDelivr CDN cache
+        run: |
+          echo "Purging wallet list files from jsDelivr CDN..."
+          for file in dist/*.json; do
+            # Purge latest tag
+            curl -s "https://purge.jsdelivr.net/gh/airgap-it/beacon-wallet-list@${{ steps.version.outputs.tag_latest }}/$file"
+            # Purge main branch
+            curl -s "https://purge.jsdelivr.net/gh/airgap-it/beacon-wallet-list@main/$file"
+          done
+          echo "✓ CDN cache purge complete"
