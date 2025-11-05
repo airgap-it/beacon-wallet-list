@@ -194,15 +194,6 @@
       "deepLink": "temple://"
     },
     {
-      "key": "atomex_ios",
-      "name": "Atomex Wallet",
-      "shortName": "Atomex",
-      "color": "",
-      "logo": "tezos_ios-atomex.png",
-      "universalLink": "https://atomex.me",
-      "deepLink": "atomex://"
-    },
-    {
       "key": "umami_ios",
       "name": "Umami Mobile",
       "shortName": "Umami Mobile",
