@@ -32,45 +32,36 @@ jobs:
           commit_message: 'chore: update dist [skip ci]'
           file_pattern: 'dist/*.json'
 
-      - name: Get version and commit info
+      - name: Get incremented version
         id: version
         run: |
-          VERSION=$(node -p "require('./package.json').version")
-          # Use the commit SHA from auto-commit action (or current HEAD if no commit was made)
-          COMMIT_SHA=${{ steps.auto-commit.outputs.commit_hash }}
-          if [ -z "$COMMIT_SHA" ]; then
-            COMMIT_SHA=$(git rev-parse HEAD)
-          fi
-          COMMIT_SHA_SHORT=$(echo $COMMIT_SHA | cut -c1-7)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "commit_sha=$COMMIT_SHA_SHORT" >> $GITHUB_OUTPUT
-          echo "tag_commit=v$VERSION-$COMMIT_SHA_SHORT" >> $GITHUB_OUTPUT
-          echo "tag_latest=v$VERSION-latest" >> $GITHUB_OUTPUT
+          # Get base version from package.json (e.g., 1.0.0)
+          BASE_VERSION=$(node -p "require('./package.json').version")
 
-      - name: Delete existing latest tag
-        continue-on-error: true
-        run: |
-          git push origin :refs/tags/${{ steps.version.outputs.tag_latest }}
+          # Fetch all tags
+          git fetch --tags
+
+          # Get the latest tag matching v1.0.* pattern
+          LATEST_TAG=$(git tag -l "v${BASE_VERSION%.*}.*" | sort -V | tail -n 1)
+
+          if [ -z "$LATEST_TAG" ]; then
+            # No existing tags, start with base version
+            NEW_TAG="v$BASE_VERSION"
+          else
+            # Extract patch number and increment
+            PATCH=$(echo $LATEST_TAG | sed 's/v[0-9]*\.[0-9]*\.//')
+            NEXT_PATCH=$((PATCH + 1))
+            NEW_TAG="v${BASE_VERSION%.*}.$NEXT_PATCH"
+          fi
+
+          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo "Next version: $NEW_TAG"
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.version.outputs.tag_commit }}
-          name: Release ${{ steps.version.outputs.tag_commit }}
-          draft: false
-          prerelease: false
-          files: |
-            dist/substrate.json
-            dist/tezos.json
-            dist/tezos-sapling.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create Latest Tag Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ steps.version.outputs.tag_latest }}
-          name: Latest Release
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: Release ${{ steps.version.outputs.tag }}
           draft: false
           prerelease: false
           files: |
@@ -84,8 +75,6 @@ jobs:
         run: |
           echo "Purging wallet list files from jsDelivr CDN..."
           for file in dist/*.json; do
-            # Purge latest tag
-            curl -s "https://purge.jsdelivr.net/gh/airgap-it/beacon-wallet-list@${{ steps.version.outputs.tag_latest }}/$file"
             # Purge main branch
             curl -s "https://purge.jsdelivr.net/gh/airgap-it/beacon-wallet-list@main/$file"
           done
