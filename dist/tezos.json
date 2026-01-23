@@ -1,6 +1,6 @@
 {
-  "version": "1.0.11",
-  "updated": "2026-01-22T14:58:46.477Z",
+  "version": "1.0.12",
+  "updated": "2026-01-23T15:48:18.542Z",
   "extensionList": [
     {
       "key": "spire_chrome",
@@ -109,7 +109,7 @@
         "seoulnet": "https://metamask.tezos.com/",
         "shadownet": "https://metamask.tezos.com/",
         "tallinnnet": "https://metamask.tezos.com/",
-        "tezlink_shadownet": "https://metamask.tezos.com/"
+        "tezlink-shadownet": "https://metamask.tezos.com/"
       }
     },
     {
@@ -144,7 +144,7 @@
         "seoulnet": "https://seoulnet.kukai.app",
         "shadownet": "https://shadownet.kukai.app",
         "tallinnnet": "https://tallinnnet.kukai.app",
-        "tezlink_shadownet": "https://shadownet-tezlink.kukai.app"
+        "tezlink-shadownet": "https://shadownet-tezlink.kukai.app"
       }
     },
     {
@@ -176,7 +176,7 @@
         "seoulnet": "https://ghostnet.tzsafe.marigold.dev",
         "shadownet": "https://ghostnet.tzsafe.marigold.dev",
         "tallinnnet": "https://ghostnet.tzsafe.marigold.dev",
-        "tezlink_shadownet": "https://tezlink-shadownet.tzsafe.marigold.dev"
+        "tezlink-shadownet": "https://tezlink-shadownet.tzsafe.marigold.dev"
       }
     }
   ],
